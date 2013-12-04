@@ -72,7 +72,18 @@
 - (void)buildSql {
     NSMutableString *sql = [NSMutableString string];
 
-    NSString *select = [self createSelectStatement];
+    NSString *select;
+    
+    if(customSelect!= NULL && appendCustomSelect) {
+      select = [NSString stringWithFormat:@"%@, %@", [self createSelectStatement], customSelect];
+    }
+    else if(customSelect !=NULL && !appendCustomSelect) {
+        select = customSelect;
+    }
+    else {
+        select = [self createSelectStatement];
+    }
+    
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
@@ -251,6 +262,12 @@
         [exceptFields addObject:field];
     }
     va_end(args);
+    return self;
+}
+
+- (ARLazyFetcher *)customSelect:(NSString *)aCustomSelect appendToSelect:(BOOL)appendToSelect {
+    customSelect = aCustomSelect;
+    appendCustomSelect = appendToSelect;
     return self;
 }
 

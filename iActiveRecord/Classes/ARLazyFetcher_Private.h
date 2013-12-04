@@ -31,6 +31,9 @@ static NSString * joinString(ARJoinType type)
     BOOL useJoin;
     NSNumber *limit;
     NSNumber *offset;
+    
+    NSString *customSelect;
+    BOOL appendCustomSelect;
 }
 
 @property (nonatomic, copy) NSMutableString *whereStatement;

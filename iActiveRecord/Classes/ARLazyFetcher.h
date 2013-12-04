@@ -24,6 +24,8 @@ typedef enum {
 
 - (ARLazyFetcher *)only:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
 - (ARLazyFetcher *)except:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
+- (ARLazyFetcher *)customSelect:(NSString *)aCustomSelect appendToSelect:(BOOL)appendToSelect;
+
 - (ARLazyFetcher *)join:(Class)aJoinRecord;
 
 - (ARLazyFetcher *)join:(Class)aJoinRecord
